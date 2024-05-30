@@ -1,0 +1,211 @@
+/* ================ 프리텐다드 폰트가져오기 및 설정 ================ */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+:root { 
+    --main-color: dodgerblue; /*#2602FF; */
+    --secondary-color:#FF5C5C; 
+    --gray-color:#D9D9D9; 
+} 
+
+body { font-family: Pretendard, sans-serif; font-size: 16px; line-height: 1.4; color:#141414; } 
+
+/* ========================= 
+초기화
+============================ */
+body,h1,h2,h3,h4,h5,h5,h6,ul,ol,li,dl,dt,dd,p,form,fieldset { padding:0; margin: 0; } 
+h1,h2,h3,h4,h5,h5,h6 { line-height: 1em; } 
+li { list-style: none; } 
+a { text-decoration: none; color:#141414; } 
+address { font-style:normal; } 
+img { vertical-align: middle; } 
+button { border:none; outline: none; background: transparent; cursor: pointer; } 
+
+/* ========================= 
+공통
+============================ */
+.inner { width: 1400px; margin: 0 auto; } 
+.row-top { position: relative; } 
+.row-bottom { position: relative; } 
+.row-bottom::after { content:""; display: block; clear: both; } 
+
+/* ========================= 
+헤더영역 
+============================ */
+#header { position:fixed; z-index: 8000; left: 0; top: 0; width:100%; background: #fff; } 
+#header .row-top .logo { text-align: center; } 
+#header .row-top .util { position: absolute; top: 50%; transform:translateY(-50%); right: 0; } 
+#header .row-top .util .btn-sch { margin-right:20px; } 
+
+/* 메뉴 */
+#header nav { float: left; } 
+#header nav #gnb { font-size: 0; } 
+#header nav #gnb::after { content:""; display: block; clear: both; } 
+
+#header nav #gnb > li { display: inline-block; font-size: 20px; position: relative; padding: 0 42px 0 20px; } 
+#header nav #gnb>li + li { margin-left: 60px; } 
+#header nav #gnb .dep1 { display: block; line-height: 83px; text-align: center; position: relative; } 
+#header nav #gnb > li:hover { color:var(--main-color); } 
+#header nav #gnb > li::before { content:""; position: absolute; right:20px; top:50%; transform:translateY(-50%); width: 14px; height: 14px; background:url("../images/ico_arrow.svg") no-repeat; transition:all 0.3s ease-in; } 
+
+#header nav #gnb > li.on::before { transform:translateY(-50%) rotate(180deg); } 
+#header nav #gnb > li .dep1::after { content:""; position: absolute; left: 50%; bottom: 0; transform:translateX(-50%); width: 0; height:3px; background: var(--main-color); transition:all 0.3s ease-in; } 
+#header nav #gnb > li.on .dep1::after { width:100%; } 
+
+/* depth2 menu */
+#header nav #gnb .dep2 { background: #fff; position: absolute; left: 50%; transform:translateX(-50%); top: 83px; width: 200px; padding:40px; box-sizing: border-box; border-radius: 0 0 30px 30px; box-shadow: 0 10px 8px 4px rgba(0,0,0,0.3); display: none; } 
+#header nav #gnb .dep2.show { display: block; } 
+#header nav #gnb .dep2 li+li { margin-top: 10px; } 
+#header nav #gnb .dep2 li a { background: #fff; display: block; font-size: 16px; line-height: 1.4; } 
+#header nav #gnb .dep2 li a:hover { color:var(--main-color); } 
+
+/* 예약하기 */
+#header .row-bottom .btn-reserv { float: right; width: 230px; height: 60px; background-color: var(--main-color); color: #fff; border-radius: 8px; font-size: 20px; line-height: 1; font-family: Pretendard, sans-serif; margin-top: 10px; } 
+
+/* ========================= 
+메인비주얼영역 
+============================ */
+.main-slide-wrap { position: relative; margin-top: 180px;} 
+.main-slide-wrap .swiper{width:100%; max-width:1920px;}
+.main-slide-wrap .quick { position: absolute; left: 50%; bottom: 50px; transform:translateX(-50%); z-index: 100; text-align: center; } 
+.main-slide-wrap .quick ul li { float: left; } 
+.main-slide-wrap .quick ul li + li { margin-left: 40px; } 
+.main-slide-wrap .quick ul li a { display: block; text-align: center; } 
+
+/* 이미지 배경으로 지정 */
+.main-slide-wrap .quick ul li a .ico-box { display: block; width: 120px; height:120px; border-radius: 60px; background:rgba(255, 255, 255, 0.6) url('../images/ico_quick5.png') no-repeat 50% 50%; } 
+
+.main-slide-wrap .quick ul li:nth-child(1) a .ico-box { background-image:url('../images/ico_quick1.png'); } 
+.main-slide-wrap .quick ul li:nth-child(2) a .ico-box { background-image:url('../images/ico_quick2.png'); } 
+.main-slide-wrap .quick ul li:nth-child(3) a .ico-box { background-image:url('../images/ico_quick3.png'); } 
+.main-slide-wrap .quick ul li:nth-child(4) a .ico-box { background-image:url('../images/ico_quick4.png'); } 
+.main-slide-wrap .quick ul li:nth-child(5) a .ico-box { background-image:url('../images/ico_quick5.png'); } 
+.main-slide-wrap .quick ul li a span.txt-box { display: block; margin-top: 20px; font-weight:500; line-height: 1em; font-size: 20px; } 
+
+/* ========================= 
+섹션 공통 
+============================ */
+.sec .inner { padding:160px 0; box-sizing: border-box; position: relative; overflow: hidden; } 
+.sec h2 { font-size: 64px; line-height: 1em; font-weight: 500; text-align: center; margin-bottom: 80px; } 
+
+/* ========================= 
+즐기기 영역
+============================ */
+#sec1 { background:url('../images/section1_bg.png') no-repeat left top; background-size:cover; } 
+
+/* 탭메뉴 */
+#sec1 ul { width: 330px; margin:0 auto; overflow: hidden; } 
+
+/* 탭배치 */
+#sec1 ul li { float: left; } 
+#sec1 ul li+li { margin-left: 10px; } 
+
+/* 탭모양 디자인 */
+#sec1 ul li a { display: block; background: white; width: 160px; text-align: center; line-height: 48px; font-size: 18px; font-weight: 500; border:2px solid var(--gray-color); border-bottom:0; border-radius:10px 10px 0 0; box-sizing: border-box; } 
+
+#sec1 ul li a.on { color:var(--main-color); border-color: var(--main-color); } 
+
+/* 탭 컨텐츠 */
+#sec1 .tab-con-wrap{position: relative; height:290px;}
+#sec1 .wrap { 
+    overflow: hidden; width:840px; margin:0 auto; margin-top:40px; 
+    position: absolute; left:50%; top:0; transform:translateX(-50%);    
+} 
+
+#sec1 .wrap#tab-con2{display: none;}
+
+#sec1 .wrap .img-box { float: left; } 
+#sec1 .wrap .cont { float: left; width: 400px; margin-top: 50px; margin-left: 40px; } 
+#sec1 .wrap .cont .txt-box h3 { font-size: 28px; } 
+#sec1 .wrap .cont .txt-box p { margin-top: 20px; font-size: 16px; line-height: 1.4; } 
+#sec1 .wrap .cont .links { margin-top: 40px; } 
+#sec1 .wrap .cont .links a { display: inline-block; padding:10px 20px; box-sizing: border-box; border-radius: 4px; text-align: center; line-height: 1em; font-weight: 500; background: var(--main-color); color:#fff; } 
+#sec1 .wrap .cont .links a+a { margin-left: 16px; } 
+
+/* ========================= 
+알림소식 영역
+============================ */
+#sec2 .inner { overflow: hidden; } 
+#sec2 .col-lft { float: left; width: 680px; } 
+
+#sec2 .col-lft ul { border-top:3px solid var(--main-color); border-bottom:3px solid var(--main-color); box-sizing: border-box; } 
+#sec2 .col-lft ul li { position: relative; border-bottom:1px solid var(--gray-color); padding:24px 0; box-sizing: border-box; } 
+
+#sec2 .col-lft ul li:last-child { border-bottom: none; } 
+#sec2 .col-lft ul li a { display: block; width: 500px; line-height: 36px; font-size: 18px; position: relative; padding-left:12px; box-sizing: border-box; transition:all 0.2s ease-in-out; } 
+#sec2 .col-lft ul li a:hover{padding-left:24px;}
+
+#sec2 .col-lft ul li a::before { content:""; position: absolute; width: 4px; height: 4px; border-radius: 50%; left:0; top:50%; transform:translateY(-50%); background:#000; } 
+
+#sec2 .col-lft ul li .date { position: absolute; right: 0; top: 50%; transform:translateY(-50%); font-size: 16px; } 
+
+/* banner image -클린데이  */
+#sec2 .col-rgt { float: right; background: yellow; width: 680px; position: relative;} 
+
+/* outline animation */
+/* horz line  */
+#sec2 .col-rgt::before{content:""; position: absolute; left:0; top: 0; width: 0; height:10px; background:rgba(85, 56, 250, 0.6); z-index:2; transition:all 0.3s ease-out}
+
+/* vert line  */
+#sec2 .col-rgt::after{content:""; position: absolute; left:0; top: 0; width: 10px; height:0; background:rgba(113, 89, 253, 0.6); z-index:2; transition:all 0.3s ease-out}
+
+#sec2 .col-rgt:hover::after{height: 100%;}
+#sec2 .col-rgt:hover::before{width: 100%;}
+
+#sec2 .col-rgt a::before{content:""; position: absolute; left:0; bottom: 0; width: 0; height:10px; background:rgba(30, 144, 155, 0.6); z-index:2; transition:all 0.3s ease-out}
+
+#sec2 .col-rgt a::after{content:""; position: absolute; right:0; top: 0; width: 10px; height:0; background: rgba(30, 143, 255, 0.8); z-index:2; transition:all 0.3s ease-out}
+
+#sec2 .col-rgt a:hover::before{width: 100%;}
+#sec2 .col-rgt a:hover::after{height: 100%;}
+
+/* ========================= 
+운영안내 영역 
+============================ */
+
+/* 섹션3 공통부분 */
+#sec3 { background:url('../images/section3_bg.png') no-repeat; background-size:cover; overflow: hidden;
+ font-size: 18px; line-height: 1em; font-weight: 500; color:#fff; } 
+
+#sec3 h3 { font-size: 24px; font-weight: 700; margin-bottom: 40px; } 
+#sec3 .time-box { width:680px; height: 270px; border: 2px solid #fff; padding:60px 130px; box-sizing: border-box; text-align: center;
+ font-size: 18px; line-height: 1; } 
+
+#sec3 .cont-box { display: inline-block; padding-left:159px; position: relative; } 
+
+#sec3 .cont-box p { position:absolute; left:0; top:50%; transform:translateY(-50%); } 
+#sec3 .cont-box ul li strong { display: inline-block; margin-left:16px; } 
+#sec3 .cont-box ul li span.color-red { background: var(--secondary-color); } 
+#sec3 .cont-box ul li span.color-green { margin-top: 10px; background: #5FF147; color: var(--main-color); } 
+ 
+ /* 섹션3-워터파크영역 */
+ #sec3 .col-lgt { float: left; } 
+ 
+ #sec3 .cont-box ul li span { display: inline-block; padding: 10px 15px; border-radius: 19px; box-sizing: border-box; } 
+ 
+ /* 섹션3-찜질방영역 */
+ #sec3 .col-rgt { float: right; margin-bottom: 65px; } 
+ #sec3 .col-rgt h3 { margin-bottom: 65px; } 
+
+/* ========================= 
+푸터 영역 
+============================ */
+footer .inner { position: relative; } 
+footer .row-top { border-bottom:1px solid var(--gray-color); } 
+footer .row-bottom { padding-bottom:148px; } 
+
+/* 푸터-링크영역 */
+footer .foot-link { padding:20px 0; } 
+footer .foot-link a { display: inline-block; font-size: 16px; line-height:1.4em; padding:10px 30px 10px 0px; position: relative; } 
+
+footer .foot-link a + a { margin-left:30px; } 
+footer .foot-link a::after { content:""; position: absolute; width: 1px; height: 16px; background: #AAA6A6;
+ right:0; top:50%; transform:translateY(-50%); } 
+
+footer .foot-link a:last-child::after { display:none; } 
+
+/* 푸터-정보영역 */
+footer .foot-info { margin-top: 30px; } 
+footer .foot-info p { margin-top: 30px; } 
+
+/* 푸터-로고 */
+footer .foot-logo { position: absolute; right: 0; top: 0; } 

@@ -1,0 +1,554 @@
+:root{
+    /* 
+        --main-color:#141414; 
+        --gray-color:#C1C0C0;  
+    */
+    --main-color:#2602FF;
+    --secondary-color:#FF5C5C;
+    --gray-color:#D9D9D9;  
+}
+
+/* ================ 프리텐다드 폰트가져오기 및 설정 ================ */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+body{
+    font-family: Pretendard, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color:#141414;
+}
+
+/* ================ 초기화 ================ */
+body,h1,h2,h3,h4,h5,h5,h6,ul,ol,li,dl,dt,dd,p,form,fieldset{padding:0; margin: 0;}
+h1,h2,h3,h4,h5,h5,h6{line-height: 1em;}
+li{list-style: none;}   
+a{text-decoration: none; color:#141414;}
+address{font-style:normal;}
+img{vertical-align: middle; } /* 이미지 하단 공백제거 */
+button{border:none; outline: none; background: transparent; cursor: pointer;}
+
+/* ================== 공통 ================== */
+.inner{width: 1400px; margin: 0 auto;}
+.row-top{position: relative;}
+.row-bottom{position: relative;}
+.row-bottom::after{content:""; display: block; clear: both;}
+
+/* ================ 헤더영역 ================ */
+#header{position:fixed; z-index: 8000; left: 0; top: 0; width:100%; background: #fff;}
+#header .row-top .logo{text-align: center;} /* 로고 가운데 정렬 */
+#header .row-top .util{position: absolute; top: 50%; transform:translateY(-50%);right: 0; }
+#header .row-top .util .btn-sch{margin-right:20px;}
+
+/* 메뉴 */
+#header nav{float: left;}
+#header nav #gnb{font-size: 0;}
+#header nav #gnb::after{content:""; display: block; clear: both;}
+
+/* depth1 */
+/* float 정렬 : 상단맞춤
+inline-block 정렬 : 하단맞춤 */
+#header nav #gnb > li{
+    display: inline-block; 
+    font-size: 20px; 
+    position: relative; /* dep2의 parent */
+    padding: 0 42px 0 20px; /*42 우측 화살표 영역 확보 */
+    /* border: 2px dashed green; */   
+}
+
+/* 메뉴 간격 */
+#header nav #gnb>li + li {margin-left: 60px;}
+
+/* depth1 menu a태그*/
+#header nav #gnb .dep1{
+    display: block; 
+    /* padding:0 42px 0 20px;  42 우측 화살표 영역 확보 */
+    /*padding:20px;        영역잡는 방법1 */
+    line-height: 83px;   /*영역잡는 방법2 */
+    text-align: center;
+    position: relative;
+}
+
+#header nav #gnb > li:hover{
+    color:var(--main-color);    
+}
+
+/* 삼각형 표시 */
+#header nav #gnb > li::before{
+    content:"";
+    position: absolute;    
+    right:20px; /* -8px minus 지정해서 바깥으로 이동하기 */
+    top:50%;
+    transform:translateY(-50%);
+    width: 14px;
+    height: 14px;
+    background:url("../images/ico_arrow.svg") no-repeat;    
+    /*display: none;  초기에 숨기기 */
+    transition:all 0.3s ease-in;
+}
+
+#header nav #gnb > li:hover::before{
+    transform:translateY(-50%) rotate(180deg);
+}
+
+/* 밑줄 표시 */
+#header nav #gnb > li .dep1::after{
+    content:"";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform:translateX(-50%);
+    width: 0;
+    height:3px;
+    background: var(--main-color);
+   /* display: none;  초기에 숨기기 */
+
+    transition:all 0.3s ease-in;
+}
+
+/* 줄이 길어지는 애니 */
+#header nav #gnb > li:hover .dep1::after{
+    width:100%;
+}
+
+/* depth2 menu */
+#header nav #gnb .dep2{
+    background: #fff;
+    position: absolute; 
+    left: 50%; 
+    transform:translateX(-50%);
+    top: 83px;
+    width: 200px; /* fixed width */
+    padding:40px;
+    box-sizing: border-box;
+    border-radius: 0 0 30px 30px;   
+    box-shadow: 0 10px 8px 4px rgba(0,0,0,0.3);
+
+    /* 메뉴 숨기기 */
+    display: none;
+}
+
+/* depth2 보이게 설정 */
+#header nav #gnb .dep2.show{display: block;}
+
+#header nav #gnb .dep2 li{}
+#header nav #gnb .dep2 li+li{margin-top: 10px;}
+#header nav #gnb .dep2 li a{
+    background: #fff; display: block;
+    font-size: 16px;
+    line-height: 1.4;
+}
+#header nav #gnb .dep2 li a:hover{color:var(--main-color);}
+
+/* 예약하기 */
+#header .row-bottom .btn-reserv {
+    float: right;
+
+    /* 가변 크기형 버튼 */
+    /* padding:20px 80px;  */
+
+    /* 고정 크기형 버튼 */
+    width: 230px;
+    height: 60px;
+
+    background-color: var(--main-color);
+    color: #fff;
+
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 1;
+
+    /* button은 body의 폰트속성을 상속받지 않는다 */
+    font-family: Pretendard, sans-serif;
+
+    margin-top: 10px;
+}
+
+/* ============= 메인비주얼영역 ============= */
+.main-slide-wrap{
+    position: relative;
+} 
+
+/* 
+포지션을 적용하면 높이 넓이를 지정하지 않더라도 그 안에 들어있는 요소의 크기만큼은 잡힌다. 
+*/
+.main-slide-wrap .quick{
+    position: absolute;
+    left: 50%;
+    bottom: 50px;   
+    transform:translateX(-50%);
+    z-index: 100;
+    text-align: center;
+}
+
+.main-slide-wrap .quick ul{}
+.main-slide-wrap .quick ul li{float: left;}
+.main-slide-wrap .quick ul li + li{margin-left: 40px;}
+.main-slide-wrap .quick ul li a{display: block; text-align: center;}
+
+/* 이미지 배경으로 지정 */
+.main-slide-wrap .quick ul li a .ico-box{
+    display: block; 
+    width: 120px;
+    height:120px;
+    border-radius: 60px;
+    background:rgba(255, 255, 255, 0.6) url('../images/ico_quick5.png') no-repeat 50% 50%;
+}
+
+.main-slide-wrap .quick ul li:nth-child(1) a .ico-box{
+    background-image:url('../images/ico_quick1.png');
+}
+
+.main-slide-wrap .quick ul li:nth-child(2) a .ico-box{
+    background-image:url('../images/ico_quick2.png');
+}
+
+.main-slide-wrap .quick ul li:nth-child(3) a .ico-box{
+    background-image:url('../images/ico_quick3.png');
+}
+
+.main-slide-wrap .quick ul li:nth-child(4) a .ico-box{
+    background-image:url('../images/ico_quick4.png');
+}
+
+.main-slide-wrap .quick ul li:nth-child(5) a .ico-box{
+    background-image:url('../images/ico_quick5.png');
+}
+
+/* 이미지 지정방법1 <img 코드> */
+/* <span class="ico-box">
+<img src="images/ico_quick4.png">
+</span>
+.main-slide-wrap .quick ul li a .ico-box{
+    display: table-cell; 
+    vertical-align: middle;
+    width: 120px;
+    height:120px;
+    border-radius: 60px;
+    background: white;
+    position: relative;
+}
+
+/*
+.main-slide-wrap .quick ul li a .ico-box img{
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    background: yellow;
+}
+*/
+
+
+.main-slide-wrap .quick ul li a span.txt-box{
+    display: block;    
+    margin-top: 20px;
+    font-weight:500;
+    /* color:#fff; */
+    line-height: 1em;
+    font-size: 20px;
+}
+
+/* ============== 섹션 공통 ============== */
+.sec{}
+.sec .inner{padding:160px 0; box-sizing: border-box; position: relative; overflow: hidden;}
+
+.sec h2{
+    font-size: 64px; line-height: 1em; font-weight: 500;
+    text-align: center; margin-bottom: 80px; 
+}
+
+/* ============== 즐기기 영역 ============== */
+#sec1{
+    background:url('../images/section1_bg.png') no-repeat left top;
+    background-size:cover;    
+}
+/* #sec1 .inner{height: 878px;}  */
+
+/* 탭메뉴 */
+#sec1 ul{
+    width: 330px; margin:0 auto; 
+    overflow: hidden; /* li의 float 처리 */
+}
+
+/* 탭배치 */
+#sec1 ul li{float: left;}
+#sec1 ul li+li{margin-left: 10px;}
+
+/* 탭모양 디자인 */
+#sec1 ul li a{
+    display: block; 
+    background: white;
+    width: 160px;
+    text-align: center;
+    line-height: 48px;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    border:2px solid var(--gray-color);
+    border-bottom:0;
+    border-radius:10px 10px 0 0; 
+
+    box-sizing: border-box;    
+}
+
+#sec1 ul li a.on{
+    color:var(--main-color);
+    border-color: var(--main-color) ;
+}
+
+/* 컨텐츠 */
+#sec1 .wrap{
+    overflow: hidden; /*float으로 인한 부모 높이값 찾기*/
+    width:840px; 
+    margin:0 auto; /* 넓이 정보를 알고있다면 margin으로 가운데 정렬하는 것이 좋다*/
+    margin-top:40px;                 
+    /*
+    position: absolute; inner에 높이 지정해야 함
+    top: 392px;
+    left: 50%;
+    transform:translateX(-50%);
+    */
+}
+
+/* 이미지 */
+#sec1 .wrap .img-box{float: left;}
+#sec1 .wrap .img-box img{}
+
+/* 텍스트 박스 */
+#sec1 .wrap .cont{
+    float: left; 
+    width: 400px;
+    margin-top: 50px;
+    margin-left: 40px;
+}
+
+#sec1 .wrap .cont .txt-box{}
+#sec1 .wrap .cont .txt-box h3{font-size: 28px;}
+#sec1 .wrap .cont .txt-box p{margin-top: 20px; font-size: 16px; line-height: 1.4;}
+
+#sec1 .wrap .cont .links{margin-top: 40px;}
+#sec1 .wrap .cont .links a{
+    display: inline-block;    
+    padding:10px 20px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    
+    text-align: center;
+    line-height: 1em;
+    font-weight: 500;
+
+    background: var(--main-color);
+    color:#fff;    
+}
+#sec1 .wrap .cont .links a+a{margin-left: 16px;}
+
+/* ============= 알림소식 영역 ============= */
+#sec2{}
+#sec2 .inner{overflow: hidden;}
+#sec2 .col-lft{float: left; width: 680px;}
+
+/* inline block 배치 */
+/*
+#sec2 .col-lft ul > li{font-size: 0;}
+#sec2 .col-lft ul > li a{
+   display: inline-block;
+   width: 580px;
+   font-size: 18px;
+   padding-right:80px;
+   box-sizing: border-box;
+   background: yellow;
+}
+#sec2 .col-lft ul > li .date{
+    display: inline-block;
+    width:100px;
+    font-size: 18px;
+    text-align: right;
+    background: lime;
+}
+*/
+
+/* position 지정 */
+#sec2 .col-lft ul{
+    border-top:3px solid var(--main-color);
+    border-bottom:3px solid var(--main-color);
+    box-sizing: border-box;
+}
+
+#sec2 .col-lft ul li{
+    position: relative;
+    border-bottom:1px solid var(--gray-color);
+    padding:24px 0;
+    box-sizing: border-box;
+}
+
+#sec2 .col-lft ul li:last-child{
+    border-bottom: none;
+}
+
+/* #sec2 .col-lft ul li+li{margin-top: 66px;} */
+
+#sec2 .col-lft ul li a{   
+    display: block;
+    width: 500px;    
+    line-height: 36px;
+    font-size: 18px;
+
+    position: relative;
+    padding-left:12px; /* 블릿 자리 마련 */
+}
+
+#sec2 .col-lft ul li a::before{
+    content:"";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    left:0;
+    top:50%;
+    transform:translateY(-50%);
+    background:#000;
+}
+
+
+#sec2 .col-lft ul li .date{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform:translateY(-50%);
+    font-size: 16px;
+ }
+
+/*
+#sec2 .col-lft ul > li{padding:40px 0px;}
+#sec2 .col-lft ul > li a{
+    float: left; 
+    position: relative;
+    width:440px; background: yellow; padding-left:14px;
+}
+#sec2 .col-lft ul > li a::before{
+    content:"";
+    position: absolute;
+    width:4px;
+    height:4px;
+    background: #000;
+
+    top:50%;
+}
+#sec2 .col-lft ul > li span{float: right; margin-left: 140px;}
+*/
+
+#sec2 .col-rgt{float: right; background: yellow; width: 680px;}
+
+/* ============= 운영안내 영역 ============= */
+
+/* 섹션3 공통부분 */
+#sec3 {
+    background:url('../images/section3_bg.png') no-repeat;
+    background-size:cover;
+    overflow: hidden;
+
+    /* 공통 폰트 */
+    font-size: 18px;
+    line-height: 1em;    
+    font-weight: 500;
+    color:#fff;
+}
+
+#sec3 h3{font-size: 24px; font-weight: 700; margin-bottom: 40px; }
+
+#sec3 .time-box{
+    width:680px;  height: 270px; 
+    border: 2px solid #fff;     
+    padding:60px 130px;
+    box-sizing: border-box;
+    text-align: center;
+
+    font-size: 18px;
+    line-height: 1;    
+}
+
+#sec3 .cont-box{
+    display: inline-block;    
+    padding-left:159px;
+    position: relative;  
+}
+
+#sec3 .cont-box p{
+    position:absolute; left:0; top:50%; 
+    transform:translateY(-50%);
+}
+
+#sec3 .cont-box ul li strong{
+    display: inline-block;    
+    margin-left:16px;
+}
+
+#sec3 .cont-box ul li span.color-red{ background: var(--secondary-color);}
+
+#sec3 .cont-box ul li span.color-green{
+    margin-top: 10px;
+    background: #5FF147; 
+    color: var(--main-color);
+}
+    
+ /* 섹션3-워터파크영역 */
+ #sec3 .col-lgt {
+     float: left;
+ }
+  
+ #sec3 .cont-box ul li span {
+     display: inline-block;
+     padding: 10px 15px;       
+     border-radius: 19px;
+     box-sizing: border-box;
+ }
+ 
+ /* 섹션3-찜질방영역 */
+ #sec3 .col-rgt {
+     float: right;
+     margin-bottom: 65px;
+ }
+ 
+ #sec3 .col-rgt h3 {
+     margin-bottom: 65px;
+ }
+
+/* =============== 푸터 영역 =============== */
+footer{}
+footer .inner{position: relative;}
+footer .row-top{border-bottom:1px solid var(--gray-color);}
+footer .foot-link{padding:20px 0;}
+footer .foot-link a{
+    display: inline-block; 
+    font-size: 16px;
+    line-height:1.4em;
+    padding:10px 30px 10px 0px;      /* 30 세로선과의 거리 */
+    position: relative;
+}
+
+footer .foot-link a + a{
+    margin-left:30px;
+}
+
+footer .foot-link a::after{
+    content:"";
+    position: absolute;
+    width: 1px;
+    height: 16px;
+    background: #AAA6A6;
+
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+/* 마지막 세로선 제거 */
+footer .foot-link a:last-child::after{
+    display:none;
+}
+
+footer .row-bottom{padding-bottom:148px;}
+footer .foot-info{margin-top: 30px;}
+footer .foot-info p{margin-top: 30px;}
+footer .foot-logo{position: absolute; right: 0; top: 0;}
